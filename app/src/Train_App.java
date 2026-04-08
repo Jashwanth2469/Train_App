@@ -1,14 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Train_App
  *
- * UC2: Add Passenger Bogies to Train
- * Demonstrates ArrayList operations like add, remove, and contains.
+ * UC3: Track Unique Bogie IDs using HashSet
+ * Demonstrates how Set prevents duplicate entries.
  *
  * @author Jaswanth
- * @version 2.0
+ * @version 3.0
  */
 public class Train_App {
 
@@ -18,31 +18,21 @@ public class Train_App {
         System.out.println("=== Train Consist Management App ===");
         System.out.println("=====================================");
 
-        // Create ArrayList for passenger bogies
-        List<String> passengerBogies = new ArrayList<>();
+        // Create HashSet for bogie IDs
+        Set<String> bogieIds = new HashSet<>();
 
-        // Add bogies (CREATE)
-        passengerBogies.add("Sleeper");
-        passengerBogies.add("AC Chair");
-        passengerBogies.add("First Class");
+        // Add bogie IDs (including duplicates)
+        bogieIds.add("BG101");
+        bogieIds.add("BG102");
+        bogieIds.add("BG103");
+        bogieIds.add("BG101"); // duplicate
+        bogieIds.add("BG102"); // duplicate
 
-        // Display bogies (READ)
-        System.out.println("\nBogies after addition:");
-        System.out.println(passengerBogies);
+        // Display unique bogie IDs
+        System.out.println("\nBogie IDs after insertion (duplicates ignored):");
+        System.out.println(bogieIds);
 
-        // Remove a bogie (DELETE)
-        passengerBogies.remove("AC Chair");
-
-        System.out.println("\nBogies after removal of AC Chair:");
-        System.out.println(passengerBogies);
-
-        // Check existence (SEARCH)
-        boolean exists = passengerBogies.contains("Sleeper");
-        System.out.println("\nIs 'Sleeper' present? " + exists);
-
-        // Final state
-        System.out.println("\nFinal bogie list:");
-        System.out.println(passengerBogies);
+        System.out.println("\nTotal unique bogies: " + bogieIds.size());
 
         System.out.println("\nProgram continues...");
     }
