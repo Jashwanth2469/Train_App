@@ -1,14 +1,14 @@
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.*;
 
 /**
  * Train_App
  *
- * UC9: Group Bogies by Type using Streams
- * Demonstrates grouping of bogies using Collectors.groupingBy().
+ * UC10: Count Total Seats using Stream reduce()
+ * Demonstrates aggregation of bogie capacities.
  *
  * @author Jaswanth
- * @version 9.0
+ * @version 10.0
  */
 public class Train_App {
 
@@ -38,29 +38,20 @@ public class Train_App {
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
-        bogies.add(new Bogie("Sleeper", 72)); // duplicate type
         bogies.add(new Bogie("First Class", 40));
-        bogies.add(new Bogie("AC Chair", 56));
 
-        System.out.println("\nOriginal Bogie List:");
+        System.out.println("\nBogie List:");
         for (Bogie b : bogies) {
             b.display();
         }
 
-        // -------- Grouping using Stream --------
-        Map<String, List<Bogie>> groupedBogies = bogies.stream()
-                .collect(Collectors.groupingBy(b -> b.name));
+        // -------- Stream Aggregation --------
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)          // extract capacity
+                .reduce(0, Integer::sum);      // sum all values
 
-        // Display grouped result
-        System.out.println("\nGrouped Bogies by Type:");
-
-        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
-            System.out.println("\nCategory: " + entry.getKey());
-
-            for (Bogie b : entry.getValue()) {
-                b.display();
-            }
-        }
+        // Display result
+        System.out.println("\nTotal Seating Capacity: " + totalSeats);
 
         System.out.println("\nProgram continues...");
     }
